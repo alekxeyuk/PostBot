@@ -67,7 +67,7 @@ class SystemNamespace(socketio.ClientNamespace):
         print(colored("Websocket Closed!", 'red', 'on_grey'))
 
     def on_event(self, data: dict) -> None:
-        if data['data']['type'] == 'new_entry_published':
+        if data['data']['type'] == 'new_entry_published' and 'original_subsite_id' not in data['data']:
             self.bot.new_entry_published(data['data'])
 
 
