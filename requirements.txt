@@ -1,5 +1,6 @@
 python-socketio==4.6.1
 colorama==0.4.4
+websocket-client
 termcolor
 requests
 requests_toolbelt
