@@ -48,9 +48,15 @@ class WsBot:
             print(message)
             subsite_id, content_id = message['subsite_id'], message['content_id']
             user_info = self.get_or_set_user(subsite_id)
+            post_text = f"[Запись](https://dtf.ru/{content_id}) "
+            if user_info['type'] == 'section':
+                post_author = self.dtf_api.get_post_info(content_id)['data']['author']
+                post_text += f"от [{post_author['name']}](https://dtf.ru/u/{post_author['id']}) в подсайте "
+            else:
+                post_text += "в блоге "
+            post_text += f"[{user_info['name']}](https://dtf.ru/u/{subsite_id})\nОригинал: https://dtf.ru/{content_id}"
             print(user_info)
-            self.client.new_channel_message(
-                text=f"[Запись](https://dtf.ru/{content_id}) в {'подсайте' if user_info['type'] == 'section' else 'блоге'} [{user_info['name']}](https://dtf.ru/u/{subsite_id})\nОригинал: https://dtf.ru/{content_id}")
+            self.client.new_channel_message(text=post_text)
         self.sio.start_background_task(process, message)
 
 
