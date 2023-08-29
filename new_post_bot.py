@@ -18,7 +18,7 @@ class WsBot:
 
         self.client = ApiClient()
         self.redis = RedisClient()
-        self.dtf_api = CMTTApiClient('dtf.ru', '1.9')
+        self.dtf_api = CMTTApiClient('dtf.ru', '2.4')
         self.url = url
 
         self.sio = socketio.Client()
