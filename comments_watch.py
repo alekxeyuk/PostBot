@@ -33,7 +33,7 @@ class WsBot:
             cmnt_id = message['comment_id']
             cmnt_user = message['user']['name']
             cmnt_text = message['text'] or 'ничего'
-            cmnt_media = [i['value'] for i in message['media'] if i['type'] == 'image']
+            cmnt_media = [i['data'] for i in message['media'] if i['type'] == 'image']
             cmnt_title = message['content']['title']
             print(colored(cmnt_user, 'cyan', 'on_grey'), f'{"Написал" if message["type"] != "comment_edited" else "Отредачил на"}=', colored(cmnt_text, 'green', 'on_grey'), '/!В пост с названием=', colored(cmnt_title, 'yellow', 'on_grey'), colored(post_id, 'red', 'on_grey'), '/!Получив id комментария=', colored(cmnt_id, 'red', 'on_grey'), colored(repr(cmnt_media), 'blue', 'on_grey'))
             del message, post_id, cmnt_id, cmnt_user, cmnt_text, cmnt_media, cmnt_title
