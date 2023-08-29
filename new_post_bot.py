@@ -49,7 +49,7 @@ class WsBot:
             subsite_id, content_id = message['subsite_id'], message['content_id']
             user_info = self.get_or_set_user(subsite_id)
             post_text = f"[Запись](https://dtf.ru/{content_id}) "
-            if user_info['type'] == 'section':
+            if user_info['type'] == 'community':
                 post_author = self.dtf_api.get_post_info(content_id)['data']['author']
                 post_text += f"от [{post_author['name']}](https://dtf.ru/u/{post_author['id']}) в подсайте "
             else:
